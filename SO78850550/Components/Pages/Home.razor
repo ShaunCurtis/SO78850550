@@ -1,0 +1,64 @@
+﻿@page "/"
+<PageTitle>Database</PageTitle>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title text-center">DataBase Insert</h1>
+
+                <br />
+                <br />
+
+                <EditForm Model="@employee" method="post" OnValidSubmit="AddNewEmployee" FormName="registerMaster">
+
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="employee.Name" class="form-control" placeholder="Name" />
+                        <label for="Name">Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputNumber @bind-Value="employee.Age" class="form-control" placeholder="Age" />
+                        <label for="Age">Age</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="employee.Title" class="form-control" placeholder="Title" />
+                        <label for="Title">Title</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="employee.Gender" class="form-control" placeholder="Gender" />
+                        <label for="Gender">Gender</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-rounded">Submit</button>
+
+                </EditForm>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-dark text-white m-2 p-2">
+    <pre>Name: @employee.Name</pre>
+    <pre>Age: @employee.Age</pre>
+    <pre>Title: @employee.Title</pre>
+    <pre>Gender: @employee.Gender</pre>
+</div>
+
+@code {
+    public Employee employee = new Employee();
+
+    public async Task AddNewEmployee()
+    {
+        await Task.Yield();
+    }
+
+    public class Employee
+    {
+        public string? Name { get; set; }
+        public int Age { get; set; }
+        public string? Title { get; set; }
+        public string? Gender { get; set; }
+
+    }
+}
